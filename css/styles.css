@@ -1,0 +1,39 @@
+@charset "UTF-8";
+/* CSS Document */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;   
+}
+
+.max-width-wrapper {
+  background-color: #F2F2F2;
+  min-height: 100%; 
+  max-width: 1440px;
+  /* Overflow: hidden hides the excess portions of the decorative elements so there isn't a 
+  horizontal scrollbar, plus make sure margin is 0 so displays to the edge */
+  overflow: hidden;
+  margin: 0;
+  
+ } 
+
+figure {
+  margin: 0;
+}
+
+img {
+  width: 100%;
+}
