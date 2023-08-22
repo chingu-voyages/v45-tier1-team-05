@@ -5,6 +5,7 @@ Fireball app is an app created to track meteorite strikes. Key goals for the app
 
 Features: This app includes:
 * Search bar - you can filter meteorite tracking results by name, size/mass range, year, country, composition, and total number of strikes. You can also clear results to reset your search filters.
+* Geolocation button - locate meteorite strikes at or near your location
 * Data display - each meteorite strike point on the map will show a data set; if no strike points are shown, a summary metric will be shown for all all meteorite strike points
 * Summary metrics display - metrics for data selected: total number of strikes, average mass, number of strikes per year histogram, and number of strikes by composition histogram
 
