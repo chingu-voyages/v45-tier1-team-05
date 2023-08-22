@@ -24,12 +24,23 @@ layer.addTo(map);
 var myRenderer = L.canvas({ padding: 0.5 });
 
 // Draw markers onto canvas and style with red
-const markerOptions = {
-    renderer: myRenderer,
-    radius: 7,
-    fillColor:"#ff0000",
-    color: "#ff0000",
-};
+function calculateRadius(mass) {
+    if (mass > 100000) {
+        return 20;
+    } else if (mass > 10000) {
+        return 15;
+    } else if (mass > 1000) {
+        return 10;
+    } else if (mass > 100) {
+        return 5;
+    } else if (mass > 10) {
+        return 3;
+    } else if (mass > 1) {
+        return 2;
+    } else {
+        return 1;
+    }
+}
 
 // Filter out data points without valid lat/lng coordinates
 function coordinateFilter(feature) {
@@ -50,6 +61,16 @@ let dataLayer = L.geoJson(meteoriteData, {
         `);
     },
     pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, markerOptions);
+        return L.circleMarker(latlng, {
+            renderer: myRenderer,
+            radius: calculateRadius(feature.properties["mass (g)"]),
+            fillColor:"#ff0000",
+            color: "#ff0000",
+        });
     }
 }).addTo(map);
+
+// functionalize rendering
+// trigger update of render at beginning
+// re-render after search button is clicked // adjust zoom/center point
+// 
