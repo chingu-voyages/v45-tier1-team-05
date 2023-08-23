@@ -22,8 +22,29 @@
         <main>
             <div>
                 <p>Hello!!</p>
+                <nav class="nav" id="main-nav-wrapper">
+                    <ul class="nav__btns">
+                        <li class="nav__search" id="search-filter">
+                            <button class="nav__searchFieldBtn" id="search-field">name</button>
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__dropdownItem" id="name">name</a>
+                                <a href="#" class="nav__dropdownItem" id="year">year</a>
+                                <a href="#" class="nav__dropdownItem" id="mass">mass</a>
+                            </div>
+                        </li>
+                        <li class="nav__search"></li>
+                            <input id="search-value" placeholder="Search Input"></input>
+                        </li>
+                        <li class="nav__search"></li>
+                            <button class="nav__searchBtn" id="search-btn">Search</button>
+                        </li>
+                        <li class="nav__search"></li>
+                            <button class="nav__resetBtn" id="reset-btn">Reset</button>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <div id="map" style="width: 100%; height: 90vh"></div>
+            <div id="map" style="width: 100%; height: 80vh"></div>
         </main>
         
         <footer>
