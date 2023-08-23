@@ -4,8 +4,12 @@ const MASSFIELD = "mass";
 const DEFAULTFIELD = NAMEFIELD;
 const DEFAULTVALUE = '';
 
+const regex = new RegExp('^[0-9]+$');
+const CURRENTYEAR = new Date().getFullYear();
+
 const searchFieldDisplay = document.getElementById("search-field");
 const searchInputElement = document.getElementById("search-value");
+const warningElement = document.getElementById("warning-display");
 
 // Allow scroll
 const corner1 = L.latLng(-90, -200)
@@ -148,6 +152,18 @@ function generateMap() {
 function updateSearch(e) {
     if (searchInput != searchInputElement.value.toLowerCase()) {
         searchInput = searchInputElement.value.toLowerCase();
+        if (searchInput !== "") {
+            if ((searchFieldDisplay.innerHTML == YEARFIELD || searchFieldDisplay.innerHTML == MASSFIELD) && !(regex.test(searchInput))) {
+                warningElement.innerHTML = "Please use numerical values only for the Year or Mass filters. Try again";
+                return;
+            } else if (searchFieldDisplay.innerHTML == YEARFIELD && Number(searchInput) > CURRENTYEAR) {
+                warningElement.innerHTML = "Please use input a year value that is current or in the past. Try again";
+                return;
+            } else if (warningElement.innerHTML !== "") {
+                warningElement.innerHTML = "";
+            }
+        }
+        
         defaultState = searchInput === "";
 
         dataLayer.clearLayers();

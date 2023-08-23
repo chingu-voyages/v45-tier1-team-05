@@ -4,6 +4,7 @@
 :root {
   --primary-color: black;
   --secondary-color: gray;
+  --warning-color: red;
   --bg-color: #fff;
   --marker-border: #0f52ba;
   --marker-fill: #c0d3e0;
@@ -128,4 +129,9 @@ button {
 .--size4 {
   width: 40px;
   height: 40px;
+}
+
+#warning-display {
+  font-size: small;
+  color: var(--warning-color);
 }
