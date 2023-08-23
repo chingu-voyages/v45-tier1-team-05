@@ -1,6 +1,14 @@
 @charset "UTF-8";
 /* CSS Document */
 
+:root {
+  --primary-color: black;
+  --secondary-color: gray;
+  --bg-color: #fff;
+  --marker-border: #0f52ba;
+  --marker-fill: #c0d3e0;
+}
+
 *,
 *::before,
 *::after {
@@ -36,4 +44,88 @@ figure {
 
 img {
   width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+.nav__search {
+  position: relative;
+  display: inline-block;
+}
+
+.nav__searchFieldBtn {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.nav__dropdown {
+  display: none;
+  position: absolute;
+  z-index: 999;
+}
+
+.nav__dropdownItem {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  border: solid var(--secondary-color) 1px;
+  text-decoration: none;
+}
+
+.nav__search:hover .nav__dropdown {
+  display: block;
+}
+
+.map__popupItem {
+  font-size: small;
+}
+
+.map__popupValue {
+  font-size: medium;
+  font-weight: bold;
+}
+
+.map__popupRow {
+  padding-bottom: 0.4em;
+}
+
+.legend {
+  background: rgba(255, 255, 255, 1);
+  border: solid 1px var(--secondary-color);
+  padding: 0px 10px 10px 10px;
+  box-shadow: 2px 2px 5px black;
+  border-radius: 5px;
+}
+.legend p {
+  text-align: center;
+  font-weight: bold;
+}
+
+.legend__inline {
+  display: inline-block;
+  padding: 0px 5px;
+  vertical-align: middle;
+}
+.legend__circle {
+  background-color: var(--marker-fill);
+  border-radius: 50%;
+  border: solid 3px var(--marker-border);
+}
+.--size1 {
+  width: 10px;
+  height: 10px;
+}
+.--size2 {
+  width: 20px;
+  height: 20px;
+}
+.--size3 {
+  width: 30px;
+  height: 30px;
+}
+.--size4 {
+  width: 40px;
+  height: 40px;
 }
