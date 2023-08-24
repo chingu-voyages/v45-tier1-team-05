@@ -60,6 +60,9 @@ button {
   background-color: var(--bg-color);
   color: var(--primary-color);
   text-decoration: none;
+  width: 100px;
+  font-size: 14px;
+  text-align: center;
 }
 
 .nav__dropdown {
@@ -73,10 +76,14 @@ button {
   color: var(--primary-color);
   border: solid var(--secondary-color) 1px;
   text-decoration: none;
+  text-align: center;
 }
 
 .nav__search:hover .nav__dropdown {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  font-size: 14px;
 }
 
 .map__popupItem {

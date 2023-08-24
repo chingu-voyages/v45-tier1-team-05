@@ -1,5 +1,6 @@
 const NAMEFIELD = "name";
 const YEARFIELD = "year";
+const COMPOSITIONFIELD = "composition";
 const MASSFIELD = "mass";
 const DEFAULTFIELD = NAMEFIELD;
 const DEFAULTVALUE = '';
@@ -96,6 +97,14 @@ function yearFilter(feature, targetValue) {
     }
 }
 
+function compositionFilter(feature, targetValue) {
+    if (targetValue === '') {
+        return true;
+    } else {
+        return feature.properties.class.toLowerCase().includes(targetValue);
+    }
+}
+
 function massFilter(feature, targetValue) {
     if (targetValue === '') {
         return true;
@@ -177,6 +186,8 @@ function getMatchingFilter(text) {
             return nameFilter;
         case YEARFIELD:
             return yearFilter;
+        case COMPOSITIONFIELD:
+            return compositionFilter;
         default:
             return massFilter;
     }
@@ -210,4 +221,5 @@ let data0 = document.getElementById("search-btn").addEventListener("click", upda
 let data1 = document.getElementById("reset-btn").addEventListener("click", resetSearch);
 let data2 = document.getElementById("name").addEventListener("click", updateSearchField);
 let data3 = document.getElementById("year").addEventListener("click", updateSearchField);
-let data4 = document.getElementById("mass").addEventListener("click", updateSearchField);
+let data4 = document.getElementById("composition").addEventListener("click", updateSearchField);
+let data5 = document.getElementById("mass").addEventListener("click", updateSearchField);
