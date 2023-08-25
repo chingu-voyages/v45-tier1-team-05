@@ -142,7 +142,13 @@ function generateMap() {
                             <div class="map__popupValue">${feature.properties.year}</div>
                         </div>
                     </div>
-                `, {});
+                `, {
+                    
+                });
+
+                layer.bindTooltip(`${feature.properties.name}`, {
+                    direction: 'top'
+                });
             }
         },
         pointToLayer: function (feature, latlng) {
@@ -150,8 +156,8 @@ function generateMap() {
                 return L.circleMarker(latlng, {
                     renderer: myRenderer,
                     radius: calculateRadius(feature.properties["mass (g)"]),
-                    fillColor:"#598baf",
-                    color: "#0f52ba",
+                    fillColor:"#294baf",
+                    color: "#0f52ba"
                 });
             }
         }
