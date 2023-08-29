@@ -182,12 +182,12 @@ button {
   max-width: 15px;
   max-height: 15px;
   background: rgba(0, 0, 0, 0);
-  border: solid var(--marker-border) 2px;
+  border: none;
   box-shadow: none;
 }
 
 .leaflet-popup-content-wrapper {
-  background: rgba(256, 256, 256, 0);
+  background: rgba(256, 256, 256, 0.9);
   border: none;
   box-shadow: none;
   position: absolute;

@@ -141,6 +141,10 @@ function generateMap() {
                             <div class="map__popupItem map__popupField">Year</div>
                             <div class="map__popupValue">${feature.properties.year}</div>
                         </div>
+                        <div class="map__popupRow">
+                            <div class="map__popupItem map__popupField">Country</div>
+                            <div class="map__popupValue">${feature.properties.country_name}</div>
+                        </div>
                     </div>
                 `, {
                     
