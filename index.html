@@ -12,8 +12,11 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title>Fireball</title>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="geolet.js"></script><!-- include geolet.js after leaflet.js -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.countryselect.js"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"
+        charset="utf-8"></script>
     <script src="assets/data.js"></script>
     <script src="assets/countries.js"></script>
 </head>
@@ -237,6 +240,7 @@
             </nav>
         </div>
         <div id="map" style="width: 100%; height: 80vh"></div>
+
     </main>
 
     <footer>

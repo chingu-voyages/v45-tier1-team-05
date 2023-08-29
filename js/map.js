@@ -67,7 +67,7 @@ let dataLayer
 let defaultState = true
 
 //Messing with GeoLocation
-// L.geolet({ position: 'topright' }).addTo(map)
+L.control.locate().addTo(map)
 
 // Draw markers onto canvas and style with red based on mass of meteorite -- needs size legend
 function calculateRadius(mass) {
