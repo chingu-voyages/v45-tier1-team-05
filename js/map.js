@@ -67,7 +67,7 @@ let myRenderer = L.canvas({ padding: 0.5 });
 let dataLayer;
 let defaultState = true;
 
-//Messing with GeoLocation
+//Added GeoLocation
 L.control.locate().addTo(map)
 
 // Draw markers onto canvas and style with red based on mass of meteorite -- needs size legend
