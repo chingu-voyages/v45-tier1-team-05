@@ -8,9 +8,9 @@ const DEFAULTVALUE = "";
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
 
-const searchFieldDisplay = document.getElementById("search-field");
-const searchInputElement = document.getElementById("search-value");
-const warningElement = document.getElementById("warning-display");
+const searchFieldDisplay = document.getElementById('search-field')
+const searchInputElement = document.getElementById('search-value')
+const warningElement = document.getElementById('warning-display')
 
 // Allow scroll
 const corner1 = L.latLng(-90, -200);
@@ -39,7 +39,7 @@ let layer = new L.TileLayer(
 );
 layer.addTo(map);
 
-let legend = L.control({ position: "bottomleft" });
+let legend = L.control({ position: 'bottomleft' })
 
 legend.onAdd = function (map) {
   let div = L.DomUtil.create("div", "legend");
@@ -61,9 +61,14 @@ legend.onAdd = function (map) {
 };
 legend.addTo(map);
 
+legend.addTo(map)
+
 let myRenderer = L.canvas({ padding: 0.5 });
 let dataLayer;
 let defaultState = true;
+
+//Added GeoLocation
+L.control.locate().addTo(map)
 
 // Draw markers onto canvas and style with red based on mass of meteorite -- needs size legend
 function calculateRadius(mass) {
@@ -121,9 +126,9 @@ function massFilter(feature, targetValue) {
   }
 }
 
-const DEFAULTFILTER = nameFilter;
-let currentFilter = DEFAULTFILTER;
-let searchInput = DEFAULTVALUE;
+const DEFAULTFILTER = nameFilter
+let currentFilter = DEFAULTFILTER
+let searchInput = DEFAULTVALUE
 
 // Draw data points onto canvas tiles and bind pop-up info
 function generateMap() {
@@ -144,7 +149,7 @@ function generateMap() {
                         </div>
                         <div class="map__popupRow">
                             <div class="map__popupItem map__popupField">Mass (g)</div>
-                            <div class="map__popupValue">${feature.properties["mass (g)"]}</div>
+                            <div class="map__popupValue">${feature.properties['mass (g)']}</div>
                         </div>
                         <div class="map__popupRow">
                             <div class="map__popupItem map__popupField">Year</div>
