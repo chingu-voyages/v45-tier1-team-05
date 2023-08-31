@@ -198,7 +198,6 @@ button {
 .leaflet-popup-close-button {
   background: var(--marker-fill) !important;
   position: absolute;
-  left: 100px;
   font-weight: bold;
   border-radius: 50%;
 }
