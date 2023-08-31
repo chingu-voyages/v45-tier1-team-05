@@ -38,7 +38,7 @@ const map = new L.map("map", {
 //   }
 // );
 // layer.addTo(map);
-let layer = new L.tileLayer(`https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token=${process.env.JAWG_TOKEN}`, {
+let layer = new L.tileLayer(`https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_JAWG_TOKEN}`, {
     maxZoom: 16,
 	attribution: '<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> | <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors'
 });
