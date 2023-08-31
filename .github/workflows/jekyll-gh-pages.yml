@@ -28,12 +28,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Store variables
+        run: |
+          echo ${{ secrets.IPINFO_TOKEN }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build with Jekyll
-        env:
-          IPINFO_TOKEN: ${{ secrets.IPINFO_TOKEN }}
-          JAWG_TOKEN: ${{ secrets.JAWG_TOKEN }}
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
