@@ -16,27 +16,66 @@
   box-sizing: border-box;
 }
 
-html {
-  border: 0;
+header {
+  display: flex;
+}
+
+.header {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 15px;
+  height: 120px;
+  width: 175px;
+}
+
+.header__item {
+  font-family: "Open Sans";
+  color: var(--marker-border);
+  height: 40px;
   margin: 0;
-  padding: 0;
-  height: 100%;
 }
 
 body {
-  min-height: 100%;
-  margin: 0;   
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.footer {
+  font-family: "Open Sans";
+  font-size: 14px;
+  color: var(--primary-color);
+  display: flex;
+  width: 400px;
+  height: 70px;
+  justify-content: space-between;
+  align-self: center;
+  align-items: center;
+}
+
+.footer__item {
+  display: flex;
+  align-items: center;
+}
+
+#git {
+  text-decoration: none;
+  color: var(--primary-color);
 }
 
 .max-width-wrapper {
-  background-color: #F2F2F2;
-  min-height: 100%; 
+  background-color: #f2f2f2;
+  min-height: 100%;
   max-width: 1440px;
   /* Overflow: hidden hides the excess portions of the decorative elements so there isn't a 
   horizontal scrollbar, plus make sure margin is 0 so displays to the edge */
   overflow: hidden;
   margin: 0;
- } 
+}
 
 figure {
   margin: 0;
@@ -50,8 +89,16 @@ button {
   cursor: pointer;
 }
 .nav {
+  margin: 5px;
+  width: 60%;
   display: flex;
-  justify-content: space-between;
+  align-self: flex-end;
+}
+
+.nav__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   flex-flow: row wrap;
 }
 
@@ -61,12 +108,31 @@ button {
 }
 
 .nav__searchFieldBtn {
-  background-color: var(--bg-color);
-  color: var(--primary-color);
   text-decoration: none;
   width: 100px;
   font-size: 14px;
   text-align: center;
+}
+
+.search_button_style {
+  background-color: var(--bg-color);
+  border: solid var(--marker-border) 1px;
+  color: var(--marker-border);
+  border-radius: 2px;
+  height: 30px;
+  min-width: 120px;
+  font-weight: bold;
+  vertical-align: center;
+}
+
+.inverse_search_button_style {
+  background-color: var(--marker-border);
+  border: solid var(--marker-border) 1px;
+  color: var(--bg-color);
+  border-radius: 3px;
+  height: 30px;
+  min-width: 75px;
+  font-weight: bold;
 }
 
 .nav__dropdown {
@@ -76,9 +142,6 @@ button {
 }
 
 .nav__dropdownItem {
-  background-color: var(--bg-color);
-  color: var(--primary-color);
-  border: solid var(--secondary-color) 1px;
   text-decoration: none;
   text-align: center;
 }
@@ -158,11 +221,11 @@ button {
   color: var(--warning-color);
 }
 
-.leaflet-tooltip-top:before, 
-.leaflet-tooltip-bottom:before, 
-.leaflet-tooltip-left:before, 
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
 .leaflet-tooltip-right:before {
-    border: none;
+  border: none;
 }
 
 .leaflet-tooltip {

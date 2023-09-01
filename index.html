@@ -8,12 +8,13 @@
 
     <link rel="icon" type="image/png" sizes="32x32" href="#">
     <link rel="icon" type="image/png" sizes="32x32" href="#">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link href="css/Leaflet.AnimatedSearchBox.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
 
-    <title>Fireball</title>
+    <title>V45 Team 05 - Fireball Project</title>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.countryselect.js"></script>
     <script src="js/Leaflet.AnimatedSearchBox.js"></script>
@@ -25,30 +26,31 @@
 
 <body>
     <header>
-
-    </header>
-
-    <main>
-        <div>
-            <nav class="nav" id="main-nav-wrapper">
+        <div class="header__wrapper">
+            <a class="header" href="/">
+                <h1 class="header__item">Fireball</h1>
+                <img class="header__item" src="./img/fireball-logo.png" alt="Fireball logo" style="width:150px;height:auto;"></img>
+            </a>
+        </div>
+        <div class="nav">
+            <nav class="nav__wrapper" id="main-nav-wrapper">
                 <ul class="nav__btns">
                     <li class="nav__search" id="search-filter">
-                        <button class="nav__searchFieldBtn" id="search-field">name</button>
-                        <div class="nav__dropdown">
-                            <a href="#" class="nav__dropdownItem" id="name">name</a>
-                            <a href="#" class="nav__dropdownItem" id="year">year</a>
-                            <a href="#" class="nav__dropdownItem" id="composition">composition</a>
-                            <a href="#" class="nav__dropdownItem" id="mass">mass</a>
-                        </div>
+                        <select id="nav__fieldSelect" class="search_button_style">
+                            <option value="name">Name</option>
+                            <option value="year">Year</option>
+                            <option value="composition">Composition</option>
+                            <option value="mass">Mass</option>
+                        </select>
                     </li>
                     <li class="nav__search"></li>
-                    <input id="search-value" placeholder="Search Input"></input>
+                    <input class="search_button_style" id="search-value" placeholder="Search Input"></input>
                     </li>
                     <li class="nav__search"></li>
-                    <button class="nav__searchBtn" id="search-btn">Search</button>
+                    <button class="nav__searchBtn inverse_search_button_style" id="search-btn">Search</button>
                     </li>
                     <li class="nav__search"></li>
-                    <button class="nav__resetBtn" id="reset-btn">Clear</button>
+                    <button class="nav__resetBtn inverse_search_button_style" id="reset-btn">Clear</button>
                     </li>
                     <li class="nav__search"></li>
                     <div id="warning-display"></div>
@@ -56,7 +58,7 @@
                 </ul>
                 <!-- Country Select Dropdown -->
                 <div class="nav__countrySelect">
-                    <select id="country-select" class="leaflet-countryselect">
+                    <select id="country-select" class="leaflet-countryselect search_button_style">
                         <option>Country</option>
                         <option>Afghanistan</option>
                         <option>Albania</option>
@@ -241,11 +243,17 @@
                 </div>
             </nav>
         </div>
-        <div id="map" style="width: 100%; height: 80vh"></div>
+    </header>
+    <main>
+        <div id="map" style="width: 100%; height: 75vh"></div>
     </main>
 
-    <footer>
-
+    <footer class="footer">
+        <div class="footer__item"><a id="git" href="https://github.com/chingu-voyages/v45-tier1-team-05"><i class="fa fa-github" style="font-size: 18px"></i> Built by Team05</a></div>
+        <div class="footer__item">|</div>
+        <div class="footer__item">V45 September 2023</div>
+        <div class="footer__item">|</div>
+        <div class="footer__item"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--k3hUvJ_o--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/462/1eba8151-95e3-4df8-b2a0-6d6b5a4c9bdd.png" alt="Chingu logo" style="width:20px;height:auto;">Chingu</div>
     </footer>
     <script src="js/map.js"></script>
     <script src="js/script.js" defer></script>

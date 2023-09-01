@@ -8,9 +8,9 @@ const DEFAULTVALUE = "";
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
 
-const searchFieldDisplay = document.getElementById('search-field')
-const searchInputElement = document.getElementById('search-value')
-const warningElement = document.getElementById('warning-display')
+const selector = document.getElementById("nav__fieldSelect");
+const searchInputElement = document.getElementById("search-value");
+const warningElement = document.getElementById("warning-display");
 
 // Allow scroll
 const corner1 = L.latLng(-90, -200);
@@ -39,7 +39,7 @@ let layer = new L.TileLayer(
 );
 layer.addTo(map);
 
-let legend = L.control({ position: 'bottomleft' })
+let legend = L.control({ position: "bottomleft" });
 
 legend.onAdd = function (map) {
   let div = L.DomUtil.create("div", "legend");
@@ -61,14 +61,14 @@ legend.onAdd = function (map) {
 };
 legend.addTo(map);
 
-legend.addTo(map)
+legend.addTo(map);
 
 let myRenderer = L.canvas({ padding: 0.5 });
 let dataLayer;
 let defaultState = true;
 
 //Added GeoLocation
-L.control.locate().addTo(map)
+L.control.locate().addTo(map);
 
 // Draw markers onto canvas and style with red based on mass of meteorite -- needs size legend
 function calculateRadius(mass) {
@@ -126,9 +126,9 @@ function massFilter(feature, targetValue) {
   }
 }
 
-const DEFAULTFILTER = nameFilter
-let currentFilter = DEFAULTFILTER
-let searchInput = DEFAULTVALUE
+const DEFAULTFILTER = nameFilter;
+let currentFilter = DEFAULTFILTER;
+let searchInput = DEFAULTVALUE;
 
 // Draw data points onto canvas tiles and bind pop-up info
 function generateMap() {
@@ -149,7 +149,7 @@ function generateMap() {
                         </div>
                         <div class="map__popupRow">
                             <div class="map__popupItem map__popupField">Mass (g)</div>
-                            <div class="map__popupValue">${feature.properties['mass (g)']}</div>
+                            <div class="map__popupValue">${feature.properties["mass (g)"]}</div>
                         </div>
                         <div class="map__popupRow">
                             <div class="map__popupItem map__popupField">Year</div>
@@ -187,15 +187,14 @@ function updateSearch(e) {
     searchInput = searchInputElement.value.toLowerCase();
     if (searchInput !== "") {
       if (
-        (searchFieldDisplay.innerHTML == YEARFIELD ||
-          searchFieldDisplay.innerHTML == MASSFIELD) &&
+        (selector.value == YEARFIELD || selector.value == MASSFIELD) &&
         !regex.test(searchInput)
       ) {
         warningElement.innerHTML =
           "Please use numerical values only for the Year or Mass filters. Try again";
         return;
       } else if (
-        searchFieldDisplay.innerHTML == YEARFIELD &&
+        selector.value == YEARFIELD &&
         Number(searchInput) > CURRENTYEAR
       ) {
         warningElement.innerHTML =
@@ -238,14 +237,13 @@ function resetSettings() {
 }
 
 function updateSearchField(e) {
-  currentFilter = getMatchingFilter(e.target.innerText);
-  searchFieldDisplay.innerHTML = e.target.innerText;
+  currentFilter = getMatchingFilter(selector.value);
   resetSettings();
 }
 
 function resetSearch(e) {
   currentFilter = DEFAULTFILTER;
-  searchFieldDisplay.innerHTML = DEFAULTFIELD;
+  selector.value = DEFAULTFIELD;
   resetSettings();
 }
 
@@ -257,17 +255,8 @@ let data1 = document
   .getElementById("reset-btn")
   .addEventListener("click", resetSearch);
 let data2 = document
-  .getElementById("name")
-  .addEventListener("click", updateSearchField);
-let data3 = document
-  .getElementById("year")
-  .addEventListener("click", updateSearchField);
-let data4 = document
-  .getElementById("composition")
-  .addEventListener("click", updateSearchField);
-let data5 = document
-  .getElementById("mass")
-  .addEventListener("click", updateSearchField);
+  .getElementById("nav__fieldSelect")
+  .addEventListener("change", updateSearchField);
 
 //Still working on how this part will work...
 
