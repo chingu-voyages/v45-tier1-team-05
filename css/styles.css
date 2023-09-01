@@ -62,9 +62,18 @@ body {
   align-items: center;
 }
 
-#git {
+#git,
+#chingu {
   text-decoration: none;
   color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+}
+#git {
+  min-width: 125px;
+}
+#chingu {
+  min-width: 70px;
 }
 
 .max-width-wrapper {
