@@ -4,6 +4,7 @@ const COMPOSITIONFIELD = "composition";
 const MASSFIELD = "mass";
 const DEFAULTFIELD = NAMEFIELD;
 const DEFAULTVALUE = "";
+const COUNTRYNAME = "country_name"
 
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
@@ -126,6 +127,23 @@ function massFilter(feature, targetValue) {
   }
 }
 
+function countryFilter(feature, targetValue) {
+  console.log("Feature Country Name:", feature.properties.country_name);
+  console.log("Target Value:", targetValue);
+
+  if (targetValue === "") {
+    return true;
+  } else if (feature.properties.country_name) {
+    return feature.properties.country_name.toLowerCase() === targetValue.toLowerCase();
+  } else {
+    // Handle the case where feature.properties.country_name is null or undefined
+    return false;
+  }
+}
+
+
+
+
 const DEFAULTFILTER = nameFilter;
 let currentFilter = DEFAULTFILTER;
 let searchInput = DEFAULTVALUE;
@@ -220,6 +238,8 @@ function getMatchingFilter(text) {
       return yearFilter;
     case COMPOSITIONFIELD:
       return compositionFilter;
+    case COUNTRYNAME:
+      return countryFilter;
     default:
       return massFilter;
   }
