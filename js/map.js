@@ -17,24 +17,6 @@ const detailedTableStructure = {
   headerFields: ["name", "year", "mass (g)", "class", "fall", "country_name"],
 };
 
-const validClass = [
-  "H?",
-  "L6",
-  "H5",
-  "L5",
-  "H6",
-  "H4",
-  "LL5",
-  "LL6",
-  "L4",
-  "H4/5",
-  "CM2",
-  "H3",
-  "L3",
-  "CO3",
-  "Ureilite",
-];
-
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
 
