@@ -4,7 +4,23 @@ const COMPOSITIONFIELD = "composition";
 const MASSFIELD = "mass";
 const DEFAULTFIELD = NAMEFIELD;
 const DEFAULTVALUE = "";
-const COUNTRYNAME = "country_name"
+const COUNTRYNAME = "country_name";
+const SUMMARY_TABLE_ID = "summary-table";
+const DETAILED_TABLE_ID = "detailed-table";
+
+const summaryTableStructure = {
+  headers: [
+    "Total number of strikes",
+    "Average mass",
+    "Histogram of strikes by year",
+    "Histogram of strikes by composition",
+  ],
+};
+
+const detailedTableStructure = {
+  headers: ["Name", "Year", "Mass (g)", "Composition", "Found", "Country"],
+  headerFields: ["name", "year", "mass (g)", "class", "fall", "country_name"],
+};
 
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
@@ -134,15 +150,15 @@ function countryFilter(feature, targetValue) {
   if (targetValue === "") {
     return true;
   } else if (feature.properties.country_name) {
-    return feature.properties.country_name.toLowerCase() === targetValue.toLowerCase();
+    return (
+      feature.properties.country_name.toLowerCase() ===
+      targetValue.toLowerCase()
+    );
   } else {
     // Handle the case where feature.properties.country_name is null or undefined
     return false;
   }
 }
-
-
-
 
 const DEFAULTFILTER = nameFilter;
 let currentFilter = DEFAULTFILTER;
@@ -198,6 +214,9 @@ function generateMap() {
       }
     },
   }).addTo(map);
+
+  let geojson = dataLayer.toGeoJSON();
+  generateTable(DETAILED_TABLE_ID, detailedTableStructure, geojson.features);
 }
 
 function updateSearch(e) {
@@ -267,7 +286,7 @@ function resetSearch(e) {
   resetSettings();
 }
 
-generateMap(currentFilter);
+generateMap();
 let data0 = document
   .getElementById("search-btn")
   .addEventListener("click", updateSearch);
@@ -281,13 +300,13 @@ let data2 = document
 //Still working on how this part will work...
 
 // Initialize the country select plugin
-// var countrySelectPlugin = L.countrySelect({title:'Pick a country!'});
+// let countrySelectPlugin = L.countrySelect({title:'Pick a country!'});
 
 // Add the plugin to the map
 // countrySelectPlugin.addTo(map);
 
 //populate the country select dropdown
-// var countryDropdown = document.getElementById('country-select')
+// let countryDropdown = document.getElementById('country-select')
 // countrySelectPlugin.getContainer().appendChild(countryDropdown);
 
 // Populate L.CountrySelect.countries with data from countries.js
@@ -295,13 +314,42 @@ let data2 = document
 
 //Handle change event for the country select dropdown
 // countryDropdown.addEventListener('change', function() {
-//     var selectedCountryCode = this.ariaValueMax;
+//     let selectedCountryCode = this.ariaValueMax;
 //       //do something with the selected country code
 // });
 
-var searchbox = L.control
+let searchbox = L.control
   .searchbox({
     position: "topright",
     expand: "left",
   })
   .addTo(map);
+
+function generateTable(tableId, tableStructure, inputData) {
+  let table = document.getElementById(tableId);
+
+  // Clear existing table
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+
+  // Create table header
+  let headerRow = document.createElement("tr");
+  for (let i = 0; i < tableStructure.headers.length; i++) {
+    let th = document.createElement("th");
+    headerRow.appendChild(th);
+    th.innerHTML = tableStructure.headers[i];
+  }
+  table.appendChild(headerRow);
+
+  // Create table rows
+  for (let i = 0; i < inputData.length; i++) {
+    let row = document.createElement("tr");
+    for (let j = 0; j < tableStructure.headerFields.length; j++) {
+      let cell = document.createElement("td");
+      cell.innerHTML = inputData[i].properties[tableStructure.headerFields[j]];
+      row.appendChild(cell);
+    }
+    table.appendChild(row);
+  }
+}
