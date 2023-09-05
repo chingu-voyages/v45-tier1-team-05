@@ -277,3 +277,33 @@ button {
 .fa-angle-down {
   font-size: 18px;
 }
+
+#table-container {
+  width: 97%;
+  height: 100px;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  font-size: 12px;
+  background-color: var(--marker-fill);
+  position: sticky;
+  top: 0;
+}
+
+td {
+  font-size: 10px;
+  text-align: left;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 5px;
+}
