@@ -5,6 +5,22 @@ const MASSFIELD = "mass";
 const DEFAULTFIELD = NAMEFIELD;
 const DEFAULTVALUE = "";
 const COUNTRYNAME = "country_name";
+const SUMMARY_TABLE_ID = "summary-table";
+const DETAILED_TABLE_ID = "detailed-table";
+
+const summaryTableStructure = {
+  headers: [
+    "Total number of strikes",
+    "Average mass",
+    "Histogram of strikes by year",
+    "Histogram of strikes by composition",
+  ],
+};
+
+const detailedTableStructure = {
+  headers: ["Name", "Year", "Mass (g)", "Composition", "Found", "Country"],
+  headerFields: ["name", "year", "mass (g)", "class", "fall", "country_name"],
+};
 
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
@@ -205,6 +221,9 @@ function generateMap() {
     warningElement.innerHTML =
       "Search filter yielded zero results. Please update the filter and try again.";
   }
+
+  let geojson = dataLayer.toGeoJSON();
+  generateTable(DETAILED_TABLE_ID, detailedTableStructure, geojson.features);
 }
 
 function updateSearch(e) {
@@ -286,7 +305,6 @@ let data2 = document
   .getElementById("nav__fieldSelect")
   .addEventListener("change", updateSearchField);
 
-
 //In map search bar with search glass
 var searchbox = L.control
   .searchbox({
@@ -294,3 +312,32 @@ var searchbox = L.control
     expand: "left",
   })
   .addTo(map);
+
+function generateTable(tableId, tableStructure, inputData) {
+  let table = document.getElementById(tableId);
+
+  // Clear existing table
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+
+  // Create table header
+  let headerRow = document.createElement("tr");
+  for (let i = 0; i < tableStructure.headers.length; i++) {
+    let th = document.createElement("th");
+    headerRow.appendChild(th);
+    th.innerHTML = tableStructure.headers[i];
+  }
+  table.appendChild(headerRow);
+
+  // Create table rows
+  for (let i = 0; i < inputData.length; i++) {
+    let row = document.createElement("tr");
+    for (let j = 0; j < tableStructure.headerFields.length; j++) {
+      let cell = document.createElement("td");
+      cell.innerHTML = inputData[i].properties[tableStructure.headerFields[j]];
+      row.appendChild(cell);
+    }
+    table.appendChild(row);
+  }
+}

@@ -99,15 +99,15 @@ header {
 }
 
 /* Dropdown search list */
- #nav__fieldSelect {
+#nav__fieldSelect {
   width: 160px;
   margin-bottom: 10px;
- }
+}
 
 /* Search Box */
- #search-value {
+#search-value {
   margin-bottom: 10px;
- }
+}
 
 .search_button_style {
   background-color: var(--bg-color);
@@ -158,7 +158,7 @@ header {
 /**************     Map Section ***************************/
 /**********************************************************/
 #map {
-  width: 100%; 
+  width: 100%;
   height: 63vh;
 }
 
@@ -312,7 +312,7 @@ header {
 /**********************************************************/
 /**************    Tablet View  ************************/
 /**********************************************************/
-@media(min-width: 768px){
+@media (min-width: 768px) {
   header {
     margin-bottom: 10px;
   }
@@ -329,10 +329,40 @@ header {
   }
 
   #map {
-    width: 100%; 
+    width: 100%;
     height: 70vh;
   }
   .footer {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
   }
+}
+
+#table-container {
+  width: 97%;
+  height: 100px;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  font-size: 12px;
+  background-color: var(--marker-fill);
+  position: sticky;
+  top: 0;
+}
+
+td {
+  font-size: 10px;
+  text-align: left;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 5px;
 }
