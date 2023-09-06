@@ -209,7 +209,7 @@ function updateSearch(e) {
         !regex.test(searchInput)
       ) {
         warningElement.innerHTML =
-          "Please use numerical values only for the Year or Mass filters. Try again";
+          "Please enter a number for the Year or Mass filters. Try again";
         return;
       } else if (
         selector.value == YEARFIELD &&
