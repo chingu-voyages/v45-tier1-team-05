@@ -162,11 +162,6 @@ button {
   font-size: 14px;
 }
 
-.nav__countrySelect {
-  margin: 16px;
-  padding: 0 27px;
-}
-
 .map__popupItem {
   font-size: smaller;
 }
