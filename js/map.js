@@ -9,18 +9,31 @@ const SUMMARY_TABLE_ID = "summary-table";
 const DETAILED_TABLE_ID = "detailed-table";
 
 const summaryTableStructure = {
-  headers: [
-    "Total number of strikes",
-    "Average mass",
-    "Histogram of strikes by year",
-    "Histogram of strikes by composition",
-  ],
+  headers: ["Total number of strikes", "Average mass"],
 };
 
 const detailedTableStructure = {
   headers: ["Name", "Year", "Mass (g)", "Composition", "Found", "Country"],
   headerFields: ["name", "year", "mass (g)", "class", "fall", "country_name"],
 };
+
+const validClass = [
+  "H?",
+  "L6",
+  "H5",
+  "L5",
+  "H6",
+  "H4",
+  "LL5",
+  "LL6",
+  "L4",
+  "H4/5",
+  "CM2",
+  "H3",
+  "L3",
+  "CO3",
+  "Ureilite",
+];
 
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
@@ -223,6 +236,11 @@ function generateMap() {
   }
   
   let geojson = dataLayer.toGeoJSON();
+  generateSummaryTable(
+    SUMMARY_TABLE_ID,
+    summaryTableStructure,
+    geojson.features
+  );
   generateTable(DETAILED_TABLE_ID, detailedTableStructure, geojson.features);
 }
 
@@ -332,6 +350,123 @@ let searchbox = L.control
     expand: "left",
   })
   .addTo(map);
+
+function generateSummaryTable(tableId, tableStructure, inputData) {
+  let table = document.getElementById(tableId);
+
+  // Clear existing table
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+
+  // Create table header
+  let headerRow = document.createElement("tr");
+  for (let i = 0; i < tableStructure.headers.length; i++) {
+    let th = document.createElement("th");
+    headerRow.appendChild(th);
+    th.innerHTML = tableStructure.headers[i];
+  }
+  table.appendChild(headerRow);
+
+  // Create summary statistics rows
+  let row = document.createElement("tr");
+
+  // Total number of strikes
+  let cell = document.createElement("td");
+  cell.innerHTML = inputData.length;
+  row.appendChild(cell);
+
+  // Total number of strikes
+  cell = document.createElement("td");
+  const averageMass =
+    inputData.reduce(function (accrual, object) {
+      return accrual + object["properties"]["mass (g)"];
+    }, 0) / inputData.length;
+  cell.innerHTML = averageMass.toFixed(2);
+  row.appendChild(cell);
+
+  table.appendChild(row);
+
+  // Histogram of strikes by year
+  let yearArray = inputData.map((data) => data.properties.year);
+
+  let traceYear = {
+    x: yearArray,
+    type: "histogram",
+    marker: {
+      color: "#002d71",
+    },
+    nbinsx: 404,
+  };
+  let dataYear = [traceYear];
+  let layoutYear = {
+    title: "Meteorite landings by year (histogram)",
+    font: {
+      family: "Montserrat",
+      size: 10,
+    },
+    width: document.getElementById("histogram-year").clientWidth * 0.98,
+    height: document.getElementById("histogram-year").clientHeigth,
+    xaxis: {
+      title: "Year",
+      titlefont: {
+        family: "Arial, sans-serif",
+        color: "grey",
+      },
+      range: [1800, 2020],
+    },
+    yaxis: {
+      title: "# Meteorites",
+      titlefont: {
+        family: "Arial, sans-serif",
+        color: "grey",
+      },
+    },
+    // paper_bgcolor: "#eaeaea",
+    // plot_bgcolor: "#eaeaea",
+  };
+  let config = { responsive: true };
+  Plotly.newPlot("histogram-year", dataYear, layoutYear, config);
+
+  // Histogram of strikes by composition
+  let classArray = inputData.map((data) => data.properties.class);
+
+  let traceClass = {
+    x: classArray,
+    type: "histogram",
+    marker: {
+      color: "#002d71",
+    },
+  };
+  let dataClass = [traceClass];
+  let layoutClass = {
+    title: "Meteorite landings by class / composition (histogram)",
+    font: {
+      family: "Montserrat",
+      size: 10,
+    },
+    width: document.getElementById("histogram-composition").clientWidth * 0.98,
+    height: document.getElementById("histogram-composition").clientHeigth,
+    xaxis: {
+      title: "Class (composition)",
+      titlefont: {
+        family: "Arial, sans-serif",
+        color: "grey",
+      },
+    },
+    yaxis: {
+      title: "# Meteorites",
+      titlefont: {
+        family: "Arial, sans-serif",
+        color: "grey",
+      },
+    },
+    // paper_bgcolor: "#eaeaea",
+    // plot_bgcolor: "#eaeaea",
+  };
+
+  Plotly.newPlot("histogram-composition", dataClass, layoutClass, config);
+}
 
 function generateTable(tableId, tableStructure, inputData) {
   let table = document.getElementById(tableId);
