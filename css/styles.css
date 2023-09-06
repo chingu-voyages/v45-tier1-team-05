@@ -1,3 +1,6 @@
+/**********************************************************/
+/**************     General Styles ************************/
+/**********************************************************/
 @charset "UTF-8";
 /* CSS Document */
 
@@ -16,6 +19,43 @@
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.max-width-wrapper {
+  background-color: #f2f2f2;
+  min-height: 100%;
+  max-width: 1440px;
+  overflow: hidden;
+  margin: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+img {
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+li {
+  margin: 0;
+}
+/**********************************************************/
+/**************     Header and Nav Section ****************/
+/**********************************************************/
 header {
   display: flex;
 }
@@ -39,67 +79,9 @@ header {
   margin: 0;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-}
-
-.footer {
-  font-family: "Open Sans";
-  font-size: 14px;
-  color: var(--primary-color);
-  display: flex;
-  width: 400px;
-  height: 70px;
-  justify-content: space-between;
-  align-self: center;
-  align-items: center;
-}
-
-.footer__item {
-  display: flex;
-  align-items: center;
-}
-
-#git,
-#chingu {
-  text-decoration: none;
-  color: var(--primary-color);
-  display: flex;
-  justify-content: space-between;
-}
-#git {
-  min-width: 125px;
-}
-#chingu {
-  min-width: 70px;
-}
-
-.max-width-wrapper {
-  background-color: #f2f2f2;
-  min-height: 100%;
-  max-width: 1440px;
-  /* Overflow: hidden hides the excess portions of the decorative elements so there isn't a 
-  horizontal scrollbar, plus make sure margin is 0 so displays to the edge */
-  overflow: hidden;
-  margin: 0;
-}
-
-figure {
-  margin: 0;
-}
-
-img {
-  width: 100%;
-}
-
-button {
-  cursor: pointer;
-}
 .nav {
   margin: 5px;
-  width: 60%;
+  /* width: 60%; */
   display: flex;
   align-self: flex-end;
 }
@@ -116,12 +98,16 @@ button {
   display: inline-block;
 }
 
-.nav__searchFieldBtn {
-  text-decoration: none;
-  width: 100px;
-  font-size: 14px;
-  text-align: center;
-}
+/* Dropdown search list */
+ #nav__fieldSelect {
+  width: 160px;
+  margin-bottom: 10px;
+ }
+
+/* Search Box */
+ #search-value {
+  margin-bottom: 10px;
+ }
 
 .search_button_style {
   background-color: var(--bg-color);
@@ -142,6 +128,12 @@ button {
   height: 30px;
   min-width: 75px;
   font-weight: bold;
+  padding: 0;
+}
+
+#search-btn {
+  margin-left: -5px;
+  margin-right: 3px;
 }
 
 .nav__dropdown {
@@ -162,9 +154,12 @@ button {
   font-size: 14px;
 }
 
-.nav__countrySelect {
-  margin: 16px;
-  padding: 0 27px;
+/**********************************************************/
+/**************     Map Section ***************************/
+/**********************************************************/
+#map {
+  width: 100%; 
+  height: 63vh;
 }
 
 .map__popupItem {
@@ -228,6 +223,9 @@ button {
 #warning-display {
   font-size: small;
   color: var(--warning-color);
+  height: 16px;
+  padding-top: 5px;
+  margin-bottom: 20px;
 }
 
 .leaflet-tooltip-top:before,
@@ -276,4 +274,65 @@ button {
 
 .fa-angle-down {
   font-size: 18px;
+}
+/**********************************************************/
+/**************    Footer Section  ************************/
+/**********************************************************/
+.footer {
+  font-family: "Open Sans";
+  font-size: 14px;
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.footer__item__span {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#git,
+#chingu {
+  text-decoration: none;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+}
+
+/* Spacing around footer icons */
+.fa-github,
+#chingu img {
+  margin-right: 5px;
+}
+
+/**********************************************************/
+/**************    Tablet View  ************************/
+/**********************************************************/
+@media(min-width: 768px){
+  header {
+    margin-bottom: 10px;
+  }
+  #main-nav-wrapper br {
+    display: none;
+  }
+
+  #search-filter {
+    margin-right: 10px;
+  }
+
+  #search-btn {
+    margin-left: 15px;
+  }
+
+  #map {
+    width: 100%; 
+    height: 70vh;
+  }
+  .footer {
+  margin-bottom: 5px;
+  }
 }
