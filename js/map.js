@@ -179,7 +179,6 @@ let searchInput = DEFAULTVALUE;
 
 // Draw data points onto canvas tiles and bind pop-up info
 function generateMap() {
-  let markerCount = 0;
   dataLayer = L.geoJson(meteoriteData, {
     filter: coordinateFilter,
     onEachFeature: function (feature, layer) {
@@ -219,7 +218,6 @@ function generateMap() {
     },
     pointToLayer: function (feature, latlng) {
       if (currentFilter(feature, searchInput)) {
-        markerCount++;
         return L.circleMarker(latlng, {
           renderer: myRenderer,
           radius: calculateRadius(feature.properties["mass (g)"]),
@@ -230,12 +228,15 @@ function generateMap() {
     },
   }).addTo(map);
 
-  if (!markerCount) {
+  let geojson = dataLayer.toGeoJSON();
+
+  if (!geojson.features.length) {
     warningElement.innerHTML =
       "Search filter yielded zero results. Please update the filter and try again.";
+  } else {
+    warningElement.innerHTML = "";
   }
 
-  let geojson = dataLayer.toGeoJSON();
   generateSummaryTable(
     SUMMARY_TABLE_ID,
     summaryTableStructure,
@@ -475,4 +476,20 @@ function generateTable(tableId, tableStructure, inputData) {
     }
     table.appendChild(row);
   }
+}
+
+let collapsible = document.getElementsByClassName("main__collapsible");
+
+for (let i = 0; i < collapsible.length; i++) {
+  collapsible[i].addEventListener("click", function () {
+    this.classList.toggle("active");
+    let content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+      content.style.overflow = "hidden";
+    } else {
+      content.style.display = "block";
+      content.style.overflow = "auto";
+    }
+  });
 }
