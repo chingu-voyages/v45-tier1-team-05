@@ -278,27 +278,8 @@ let data2 = document
   .getElementById("nav__fieldSelect")
   .addEventListener("change", updateSearchField);
 
-//Still working on how this part will work...
 
-// Initialize the country select plugin
-// var countrySelectPlugin = L.countrySelect({title:'Pick a country!'});
-
-// Add the plugin to the map
-// countrySelectPlugin.addTo(map);
-
-//populate the country select dropdown
-// var countryDropdown = document.getElementById('country-select')
-// countrySelectPlugin.getContainer().appendChild(countryDropdown);
-
-// Populate L.CountrySelect.countries with data from countries.js
-// L.CountrySelect.countries = countrySelect;
-
-//Handle change event for the country select dropdown
-// countryDropdown.addEventListener('change', function() {
-//     var selectedCountryCode = this.ariaValueMax;
-//       //do something with the selected country code
-// });
-
+//In map search bar with search glass
 var searchbox = L.control
   .searchbox({
     position: "topright",
