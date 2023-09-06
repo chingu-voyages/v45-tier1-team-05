@@ -4,7 +4,7 @@ const COMPOSITIONFIELD = "composition";
 const MASSFIELD = "mass";
 const DEFAULTFIELD = NAMEFIELD;
 const DEFAULTVALUE = "";
-const COUNTRYNAME = "country_name"
+const COUNTRYNAME = "country_name";
 
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
@@ -134,15 +134,15 @@ function countryFilter(feature, targetValue) {
   if (targetValue === "") {
     return true;
   } else if (feature.properties.country_name) {
-    return feature.properties.country_name.toLowerCase() === targetValue.toLowerCase();
+    return (
+      feature.properties.country_name.toLowerCase() ===
+      targetValue.toLowerCase()
+    );
   } else {
     // Handle the case where feature.properties.country_name is null or undefined
     return false;
   }
 }
-
-
-
 
 const DEFAULTFILTER = nameFilter;
 let currentFilter = DEFAULTFILTER;
@@ -150,6 +150,7 @@ let searchInput = DEFAULTVALUE;
 
 // Draw data points onto canvas tiles and bind pop-up info
 function generateMap() {
+  let markerCount = 0;
   dataLayer = L.geoJson(meteoriteData, {
     filter: coordinateFilter,
     onEachFeature: function (feature, layer) {
@@ -189,6 +190,7 @@ function generateMap() {
     },
     pointToLayer: function (feature, latlng) {
       if (currentFilter(feature, searchInput)) {
+        markerCount++;
         return L.circleMarker(latlng, {
           renderer: myRenderer,
           radius: calculateRadius(feature.properties["mass (g)"]),
@@ -198,6 +200,11 @@ function generateMap() {
       }
     },
   }).addTo(map);
+
+  if (!markerCount) {
+    warningElement.innerHTML =
+      "Search filter yielded zero results. Please update the filter and try again.";
+  }
 }
 
 function updateSearch(e) {
@@ -248,6 +255,7 @@ function getMatchingFilter(text) {
 function resetSettings() {
   searchInput = DEFAULTVALUE;
   searchInputElement.value = DEFAULTVALUE;
+  warningElement.innerHTML = "";
 
   if (!defaultState) {
     dataLayer.clearLayers();
@@ -267,7 +275,7 @@ function resetSearch(e) {
   resetSettings();
 }
 
-generateMap(currentFilter);
+generateMap();
 let data0 = document
   .getElementById("search-btn")
   .addEventListener("click", updateSearch);
