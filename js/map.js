@@ -5,6 +5,35 @@ const MASSFIELD = "mass";
 const DEFAULTFIELD = NAMEFIELD;
 const DEFAULTVALUE = "";
 const COUNTRYNAME = "country_name";
+const SUMMARY_TABLE_ID = "summary-table";
+const DETAILED_TABLE_ID = "detailed-table";
+
+const summaryTableStructure = {
+  headers: ["Total number of strikes", "Average mass"],
+};
+
+const detailedTableStructure = {
+  headers: ["Name", "Year", "Mass (g)", "Composition", "Found", "Country"],
+  headerFields: ["name", "year", "mass (g)", "class", "fall", "country_name"],
+};
+
+const validClass = [
+  "H?",
+  "L6",
+  "H5",
+  "L5",
+  "H6",
+  "H4",
+  "LL5",
+  "LL6",
+  "L4",
+  "H4/5",
+  "CM2",
+  "H3",
+  "L3",
+  "CO3",
+  "Ureilite",
+];
 
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
@@ -150,7 +179,6 @@ let searchInput = DEFAULTVALUE;
 
 // Draw data points onto canvas tiles and bind pop-up info
 function generateMap() {
-  let markerCount = 0;
   dataLayer = L.geoJson(meteoriteData, {
     filter: coordinateFilter,
     onEachFeature: function (feature, layer) {
@@ -190,7 +218,6 @@ function generateMap() {
     },
     pointToLayer: function (feature, latlng) {
       if (currentFilter(feature, searchInput)) {
-        markerCount++;
         return L.circleMarker(latlng, {
           renderer: myRenderer,
           radius: calculateRadius(feature.properties["mass (g)"]),
@@ -201,10 +228,21 @@ function generateMap() {
     },
   }).addTo(map);
 
-  if (!markerCount) {
+  let geojson = dataLayer.toGeoJSON();
+
+  if (!geojson.features.length) {
     warningElement.innerHTML =
       "Search filter yielded zero results. Please update the filter and try again.";
+  } else {
+    warningElement.innerHTML = "";
   }
+
+  generateSummaryTable(
+    SUMMARY_TABLE_ID,
+    summaryTableStructure,
+    geojson.features
+  );
+  generateTable(DETAILED_TABLE_ID, detailedTableStructure, geojson.features);
 }
 
 function updateSearch(e) {
@@ -286,7 +324,6 @@ let data2 = document
   .getElementById("nav__fieldSelect")
   .addEventListener("change", updateSearchField);
 
-
 //In map search bar with search glass
 var searchbox = L.control
   .searchbox({
@@ -294,3 +331,165 @@ var searchbox = L.control
     expand: "left",
   })
   .addTo(map);
+
+function generateSummaryTable(tableId, tableStructure, inputData) {
+  let table = document.getElementById(tableId);
+
+  // Clear existing table
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+
+  // Create table header
+  let headerRow = document.createElement("tr");
+  for (let i = 0; i < tableStructure.headers.length; i++) {
+    let th = document.createElement("th");
+    headerRow.appendChild(th);
+    th.innerHTML = tableStructure.headers[i];
+  }
+  table.appendChild(headerRow);
+
+  // Create summary statistics rows
+  let row = document.createElement("tr");
+
+  // Total number of strikes
+  let cell = document.createElement("td");
+  cell.innerHTML = inputData.length;
+  row.appendChild(cell);
+
+  // Total number of strikes
+  cell = document.createElement("td");
+  const averageMass =
+    inputData.reduce(function (accrual, object) {
+      return accrual + object["properties"]["mass (g)"];
+    }, 0) / inputData.length;
+  cell.innerHTML = averageMass.toFixed(2);
+  row.appendChild(cell);
+
+  table.appendChild(row);
+
+  // Histogram of strikes by year
+  let yearArray = inputData.map((data) => data.properties.year);
+
+  let traceYear = {
+    x: yearArray,
+    type: "histogram",
+    marker: {
+      color: "#002d71",
+    },
+    nbinsx: 404,
+  };
+  let dataYear = [traceYear];
+  let layoutYear = {
+    title: "Meteorite landings by year (histogram)",
+    font: {
+      family: "Montserrat",
+      size: 10,
+    },
+    width: document.getElementById("histogram-year").clientWidth * 0.98,
+    height: document.getElementById("histogram-year").clientHeigth,
+    xaxis: {
+      title: "Year",
+      titlefont: {
+        family: "Arial, sans-serif",
+        color: "grey",
+      },
+      range: [1800, 2020],
+    },
+    yaxis: {
+      title: "# Meteorites",
+      titlefont: {
+        family: "Arial, sans-serif",
+        color: "grey",
+      },
+    },
+    // paper_bgcolor: "#eaeaea",
+    // plot_bgcolor: "#eaeaea",
+  };
+  let config = { responsive: true };
+  Plotly.newPlot("histogram-year", dataYear, layoutYear, config);
+
+  // Histogram of strikes by composition
+  let classArray = inputData.map((data) => data.properties.class);
+
+  let traceClass = {
+    x: classArray,
+    type: "histogram",
+    marker: {
+      color: "#002d71",
+    },
+  };
+  let dataClass = [traceClass];
+  let layoutClass = {
+    title: "Meteorite landings by class / composition (histogram)",
+    font: {
+      family: "Montserrat",
+      size: 10,
+    },
+    width: document.getElementById("histogram-composition").clientWidth * 0.98,
+    height: document.getElementById("histogram-composition").clientHeigth,
+    xaxis: {
+      title: "Class (composition)",
+      titlefont: {
+        family: "Arial, sans-serif",
+        color: "grey",
+      },
+    },
+    yaxis: {
+      title: "# Meteorites",
+      titlefont: {
+        family: "Arial, sans-serif",
+        color: "grey",
+      },
+    },
+    // paper_bgcolor: "#eaeaea",
+    // plot_bgcolor: "#eaeaea",
+  };
+
+  Plotly.newPlot("histogram-composition", dataClass, layoutClass, config);
+}
+
+function generateTable(tableId, tableStructure, inputData) {
+  let table = document.getElementById(tableId);
+
+  // Clear existing table
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+
+  // Create table header
+  let headerRow = document.createElement("tr");
+  for (let i = 0; i < tableStructure.headers.length; i++) {
+    let th = document.createElement("th");
+    headerRow.appendChild(th);
+    th.innerHTML = tableStructure.headers[i];
+  }
+  table.appendChild(headerRow);
+
+  // Create table rows
+  for (let i = 0; i < inputData.length; i++) {
+    let row = document.createElement("tr");
+    for (let j = 0; j < tableStructure.headerFields.length; j++) {
+      let cell = document.createElement("td");
+      cell.innerHTML = inputData[i].properties[tableStructure.headerFields[j]];
+      row.appendChild(cell);
+    }
+    table.appendChild(row);
+  }
+}
+
+let collapsible = document.getElementsByClassName("main__collapsible");
+
+for (let i = 0; i < collapsible.length; i++) {
+  collapsible[i].addEventListener("click", function () {
+    this.classList.toggle("active");
+    let content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+      content.style.overflow = "hidden";
+    } else {
+      content.style.display = "block";
+      content.style.overflow = "auto";
+    }
+  });
+}

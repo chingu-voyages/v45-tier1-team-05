@@ -99,15 +99,15 @@ header {
 }
 
 /* Dropdown search list */
- #nav__fieldSelect {
+#nav__fieldSelect {
   width: 160px;
   margin-bottom: 10px;
- }
+}
 
 /* Search Box */
- #search-value {
+#search-value {
   margin-bottom: 10px;
- }
+}
 
 .search_button_style {
   background-color: var(--bg-color);
@@ -158,7 +158,7 @@ header {
 /**************     Map Section ***************************/
 /**********************************************************/
 #map {
-  width: 100%; 
+  width: 100%;
   height: 63vh;
 }
 
@@ -312,7 +312,7 @@ header {
 /**********************************************************/
 /**************    Tablet View  ************************/
 /**********************************************************/
-@media(min-width: 768px){
+@media (min-width: 768px) {
   header {
     margin-bottom: 10px;
   }
@@ -329,10 +329,101 @@ header {
   }
 
   #map {
-    width: 100%; 
+    width: 100%;
     height: 70vh;
   }
   .footer {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
   }
+}
+
+.main__table-container {
+  width: 97%;
+  margin: 5px auto;
+  display: none;
+  overflow: hidden;
+}
+
+#summary-table-container {
+  height: 380px;
+}
+
+#summary-table th {
+  width: 50%;
+}
+
+#detailed-table-container {
+  height: 200px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  font-size: 12px;
+  background-color: var(--marker-fill);
+}
+
+#detailed-table th {
+  position: sticky;
+  top: 0;
+}
+
+td {
+  font-size: 10px;
+  text-align: left;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+#histogram-year,
+#histogram-composition {
+  padding: 5px;
+  text-align: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+#figures-container {
+  display: flex;
+  width: 100%;
+  height: 80%;
+}
+
+.main__collapsible {
+  background-color: var(--marker-fill);
+  color: var(--marker-border);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 15px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  outline: none;
+  font-size: 14px;
+}
+
+.active,
+.main__collapsible:hover {
+  background-color: var(--marker-border);
+  color: var(--marker-fill);
+}
+
+.main__collapsible:after {
+  content: "\002b"; /* Unicode character for "plus" sign (+) */
+  font-size: 24px;
+}
+
+.active:after {
+  content: "\2212"; /* Unicode character for "minus" sign (-) */
 }
