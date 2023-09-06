@@ -337,11 +337,22 @@ header {
   }
 }
 
-#table-container {
+.main__table-container {
   width: 97%;
-  height: 100px;
-  margin: 0 auto;
+  margin: 5px auto;
+}
+
+#summary-table-container {
+  height: 380px;
+}
+
+#summary-table th {
+  width: 50%;
+}
+
+#detailed-table-container {
   overflow: auto;
+  height: 200px;
 }
 
 table {
@@ -352,6 +363,9 @@ table {
 th {
   font-size: 12px;
   background-color: var(--marker-fill);
+}
+
+#detailed-table th {
   position: sticky;
   top: 0;
 }
@@ -365,4 +379,19 @@ th,
 td {
   border: 1px solid black;
   padding: 5px;
+}
+
+#histogram-year,
+#histogram-composition {
+  padding: 5px;
+  text-align: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+#figures-container {
+  display: flex;
+  width: 100%;
+  height: 80%;
 }
