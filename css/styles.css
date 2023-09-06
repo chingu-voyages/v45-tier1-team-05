@@ -420,10 +420,10 @@ td {
 }
 
 .main__collapsible:after {
-  content: "\203A"; /* Unicode character for "plus" sign (+) */
-  font-size: 32px;
+  content: "\002b"; /* Unicode character for "plus" sign (+) */
+  font-size: 24px;
 }
 
 .active:after {
-  content: "\2304"; /* Unicode character for "minus" sign (-) */
+  content: "\2212"; /* Unicode character for "minus" sign (-) */
 }
