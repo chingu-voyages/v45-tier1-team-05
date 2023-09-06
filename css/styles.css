@@ -281,6 +281,8 @@ button {
 .main__table-container {
   width: 97%;
   margin: 5px auto;
+  display: none;
+  overflow: hidden;
 }
 
 #summary-table-container {
@@ -292,7 +294,6 @@ button {
 }
 
 #detailed-table-container {
-  overflow: auto;
   height: 200px;
 }
 
@@ -335,4 +336,35 @@ td {
   display: flex;
   width: 100%;
   height: 80%;
+}
+
+.main__collapsible {
+  background-color: var(--marker-fill);
+  color: var(--marker-border);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 15px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  outline: none;
+  font-size: 14px;
+}
+
+.active,
+.main__collapsible:hover {
+  background-color: var(--marker-border);
+  color: var(--marker-fill);
+}
+
+.main__collapsible:after {
+  content: "\203A"; /* Unicode character for "plus" sign (+) */
+  font-size: 32px;
+}
+
+.active:after {
+  content: "\2304"; /* Unicode character for "minus" sign (-) */
 }
