@@ -80,8 +80,8 @@ header {
 }
 
 .nav {
-  margin: 5px;
-  /* width: 60%; */
+  margin-top: 25px;
+  margin-bottom: 5px;
   display: flex;
   align-self: flex-end;
 }
@@ -90,7 +90,7 @@ header {
   width: 100%;
   display: flex;
   justify-content: center;
-  flex-flow: row wrap;
+  flex-direction: column;
 }
 
 .nav__search {
@@ -132,8 +132,7 @@ header {
 }
 
 #search-btn {
-  margin-left: -5px;
-  margin-right: 3px;
+  margin-right: 5px;
 }
 
 .nav__dropdown {
@@ -308,35 +307,6 @@ header {
 #chingu img {
   margin-right: 5px;
 }
-
-/**********************************************************/
-/**************    Tablet View  ************************/
-/**********************************************************/
-@media (min-width: 768px) {
-  header {
-    margin-bottom: 10px;
-  }
-  #main-nav-wrapper br {
-    display: none;
-  }
-
-  #search-filter {
-    margin-right: 10px;
-  }
-
-  #search-btn {
-    margin-left: 15px;
-  }
-
-  #map {
-    width: 100%;
-    height: 70vh;
-  }
-  .footer {
-    margin-bottom: 5px;
-  }
-}
-
 /**********************************************************/
 /**************    Data Tables View    ********************/
 /**********************************************************/
@@ -430,4 +400,33 @@ td {
 
 .active:after {
   content: "\2212"; /* Unicode character for "minus" sign (-) */
+}
+/**********************************************************/
+/**************    Tablet View  ***************************/
+/**********************************************************/
+@media (min-width: 768px) {
+  header {
+    margin-bottom: 10px;
+  }
+
+  #main-nav-wrapper br {
+    display: none;
+  }
+
+  #search-btn {
+    margin-left: 15px;
+  }
+
+  #map {
+    width: 100%;
+    height: 70vh;
+  }
+
+  .footer {
+    margin-bottom: 5px;
+  }
+
+  .search_button_style {
+    margin-right: 10px;
+  }
 }
