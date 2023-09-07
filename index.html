@@ -8,19 +8,18 @@
         <link rel="icon" type="image/png" sizes="32x32" href="#">
         <link rel="icon" type="image/png" sizes="32x32" href="#">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
         <link href="css/Leaflet.AnimatedSearchBox.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css">
 
         <title>V45 Team 05 - Fireball Project</title>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script src="js/Leaflet.AnimatedSearchBox.js"></script>
         <script src="assets/data.js"></script>
         <script src="assets/countries.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"
-            charset="utf-8"></script>
-        <script src="https://cdn.plot.ly/plotly-2.25.2.min.js" charset="utf-8"></script>
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-2.25.2.min.js"></script>
     </head>
 
     <body>
@@ -33,29 +32,27 @@
             </div>
             <div class="nav">
                 <nav class="nav__wrapper" id="main-nav-wrapper">
-                    <ul class="nav__btns">
-                        <li class="nav__search" id="search-filter">
-                            <select id="nav__fieldSelect" class="search_button_style">
+                    <div class="nav__search">
+                        <div class="nav__btns">
+                            <label for="nav__fieldSelect"></label>
+                            <select id="nav__fieldSelect" class="search_button_style" name="fieldSelect">
+                                <option value="" disabled selected>Select an item</option>
                                 <option value="name">Name</option>
                                 <option value="year">Year</option>
                                 <option value="composition">Composition</option>
                                 <option value="mass">Mass</option>
                                 <option value="country_name">Country</option>
                             </select>
-                        </li>
-                        <li class="nav__search">
-                            <input class="search_button_style" id="search-value" placeholder="Search Input"></input>
-                            <br>    
-                        </li>
-                        <li class="nav__search"></li>
-                        <button class="nav__searchBtn inverse_search_button_style" id="search-btn">Search</button>
-                        </li>
-                        <li class="nav__search"></li>
-                        <button class="nav__resetBtn inverse_search_button_style" id="reset-btn">Clear</button>
-                        </li>
-                        <li class="nav__search"></li>
-                        <div id="warning-display"></div>
-                    </ul>
+
+                            <label for="search-value"></label>
+                            <input class="search_button_style" id="search-value" placeholder="Search Input">
+                            <br>
+                            <button class="nav__searchBtn inverse_search_button_style" id="search-btn">Search</button>
+                            <button class="nav__resetBtn inverse_search_button_style" id="reset-btn">Clear</button>
+                        </div>
+                    </div>
+                    
+                    <div id="warning-display"></div>
                 </nav>
             </div>
         </header>
