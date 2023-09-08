@@ -387,7 +387,7 @@ td {
   font-size: 14px;
 }
 
-.active,
+.active-info,
 .main__collapsible:hover {
   background-color: var(--marker-border);
   color: var(--marker-fill);
@@ -398,7 +398,7 @@ td {
   font-size: 24px;
 }
 
-.active:after {
+.active-info:after {
   content: "\2212"; /* Unicode character for "minus" sign (-) */
 }
 /**********************************************************/

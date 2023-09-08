@@ -17,24 +17,6 @@ const detailedTableStructure = {
   headerFields: ["name", "year", "mass (g)", "class", "fall", "country_name"],
 };
 
-const validClass = [
-  "H?",
-  "L6",
-  "H5",
-  "L5",
-  "H6",
-  "H4",
-  "LL5",
-  "LL6",
-  "L4",
-  "H4/5",
-  "CM2",
-  "H3",
-  "L3",
-  "CO3",
-  "Ureilite",
-];
-
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
 
@@ -487,7 +469,7 @@ let collapsible = document.getElementsByClassName("main__collapsible");
 
 for (let i = 0; i < collapsible.length; i++) {
   collapsible[i].addEventListener("click", function () {
-    this.classList.toggle("active");
+    this.classList.toggle("active-info");
     let content = this.nextElementSibling;
     if (content.style.display === "block") {
       content.style.display = "none";
