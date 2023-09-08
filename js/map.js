@@ -32,10 +32,10 @@ const bounds = L.latLngBounds(corner1, corner2);
 // Set use-canvas, zoom and map center options
 const map = new L.map("map", {
   preferCanvas: true,
-  center: [39.75, -104.98],
-  zoom: 7,
+  center: [41.14, -100.98],
+  zoom: 4,
   minZoom: 3,
-  maxZoom: 16,
+  maxZoom: 15,
   maxBounds: bounds,
   maxBoundsViscosity: 0.5,
 });
