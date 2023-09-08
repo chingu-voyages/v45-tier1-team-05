@@ -128,7 +128,13 @@ header {
   height: 30px;
   min-width: 75px;
   font-weight: bold;
+  font-size: 15px;
   padding: 0;
+  letter-spacing: 1.5px;
+}
+
+.inverse_search_button_style:hover {
+  background-color: #4e74a9;
 }
 
 #search-btn {
