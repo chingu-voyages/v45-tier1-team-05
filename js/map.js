@@ -2,6 +2,7 @@ const NAMEFIELD = "name";
 const YEARFIELD = "year";
 const COMPOSITIONFIELD = "composition";
 const MASSFIELD = "mass";
+const COUNTRYFIELD = "country_name";
 const DEFAULTFIELD = NAMEFIELD;
 const DEFAULTVALUE = "";
 const COUNTRYNAME = "country_name";
@@ -16,6 +17,188 @@ const detailedTableStructure = {
   headers: ["Name", "Year", "Mass (g)", "Composition", "Found", "Country"],
   headerFields: ["name", "year", "mass (g)", "class", "fall", "country_name"],
 };
+
+const countries = [
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Angola",
+  "Antarctica",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "Bangladesh",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bermuda",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia and Herzegovina",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Central African Republic",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Costa Rica",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Czech Republic",
+  "Democratic Republic of the Congo",
+  "Denmark",
+  "Djibouti",
+  "Dominican Republic",
+  "East Timor",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Estonia",
+  "Ethiopia",
+  "Falkland Islands",
+  "Fiji",
+  "Finland",
+  "France",
+  "French Guiana",
+  "Gabon",
+  "Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Greenland",
+  "Guatemala",
+  "Guinea",
+  "Guinea Bissau",
+  "Guyana",
+  "Haiti",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Ivory Coast",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kosovo",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Lithuania",
+  "Luxembourg",
+  "Macedonia",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Mali",
+  "Malta",
+  "Mauritania",
+  "Mexico",
+  "Moldova",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Mozambique",
+  "Myanmar",
+  "Namibia",
+  "Nepal",
+  "Netherlands",
+  "New Caledonia",
+  "New Zealand",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Korea",
+  "Northern Cyprus",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Panama",
+  "Papua New Guinea",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Puerto Rico",
+  "Qatar",
+  "Republic of Serbia",
+  "Republic of the Congo",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Saudi Arabia",
+  "Senegal",
+  "Sierra Leone",
+  "Slovakia",
+  "Slovenia",
+  "Solomon Islands",
+  "Somalia",
+  "Somaliland",
+  "South Africa",
+  "South Korea",
+  "South Sudan",
+  "Spain",
+  "Sri Lanka",
+  "Sudan",
+  "Suriname",
+  "Swaziland",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Taiwan",
+  "Tajikistan",
+  "Thailand",
+  "The Bahamas",
+  "Togo",
+  "Trinidad and Tobago",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United Republic of Tanzania",
+  "United States of America",
+  "Uruguay",
+  "Uzbekistan",
+  "Vanuatu",
+  "Venezuela",
+  "Vietnam",
+  "West Bank",
+  "Western Sahara",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe",
+];
 
 const regex = new RegExp("^[0-9]+$");
 const CURRENTYEAR = new Date().getFullYear();
@@ -259,6 +442,9 @@ function updateSearch(e) {
     dataLayer.clearLayers();
     let layer = generateMap();
     map.fitBounds(layer.getBounds());
+
+    searchbox.clear();
+    searchbox.hide();
   }
 }
 
@@ -292,6 +478,8 @@ function resetSettings() {
 function updateSearchField(e) {
   currentFilter = getMatchingFilter(selector.value);
   resetSettings();
+  searchbox.clear();
+  searchbox.hide();
 }
 
 function resetSearch(e) {
@@ -312,7 +500,11 @@ let data1 = searchInputElement
   });
 let data2 = document
   .getElementById("reset-btn")
-  .addEventListener("click", resetSearch);
+  .addEventListener("click", (e) => {
+    resetSearch(e);
+    searchbox.clear();
+    searchbox.hide();
+  });
 let data3 = document
   .getElementById("nav__fieldSelect")
   .addEventListener("change", updateSearchField);
@@ -485,4 +677,52 @@ for (let i = 0; i < collapsible.length; i++) {
       content.style.overflow = "auto";
     }
   });
+}
+
+searchbox.onInput("keyup", function (e) {
+  if (e.keyCode == 13) {
+    let value = searchbox.getValue().toLowerCase();
+    if (value != "") {
+      let results = countries.filter((country) =>
+        country.toLowerCase().includes(value)
+      );
+      searchbox.setValue(results[0]);
+    }
+
+    search();
+  } else {
+    let value = searchbox.getValue().toLowerCase();
+    if (value != "") {
+      let results = countries.filter((country) =>
+        country.toLowerCase().includes(value)
+      );
+      searchbox.setItems(results.slice(0, 5));
+    } else {
+      searchbox.clearItems();
+    }
+  }
+});
+
+searchbox.onButton("click", search);
+searchbox.onAutocomplete("click", search);
+
+function search() {
+  defaultState = true;
+  resetSearch();
+  
+  currentFilter = countryFilter;
+  searchInput = searchbox.getValue();
+  selector.value = COUNTRYFIELD;
+  searchInputElement.value = searchInput;
+  dataLayer.clearLayers();
+  let layer = generateMap();
+  map.fitBounds(layer.getBounds());
+
+  defaultState = false;
+
+  setTimeout(function () {
+    searchbox.hide();
+    searchbox.clearItems();
+    // searchbox.clear();
+  }, 600);
 }
