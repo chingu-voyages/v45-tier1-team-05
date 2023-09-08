@@ -230,6 +230,8 @@ function generateMap() {
     geojson.features
   );
   generateTable(DETAILED_TABLE_ID, detailedTableStructure, geojson.features);
+
+  return dataLayer;
 }
 
 function updateSearch(e) {
@@ -258,7 +260,8 @@ function updateSearch(e) {
     defaultState = searchInput === "";
 
     dataLayer.clearLayers();
-    generateMap();
+    let layer = generateMap();
+    map.fitBounds(layer.getBounds());
   }
 }
 
