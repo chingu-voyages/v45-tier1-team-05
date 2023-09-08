@@ -91,14 +91,19 @@ legend.onAdd = function (map) {
 };
 legend.addTo(map);
 
-legend.addTo(map);
-
 let myRenderer = L.canvas({ padding: 0.5 });
 let dataLayer;
 let defaultState = true;
 
 //Added GeoLocation
-L.control.locate().addTo(map);
+const geolocationOptions = {
+  strings: {
+    title: "Click here to zoom into my location",
+  },
+  showPopup: false,
+  drawCircle: false,
+};
+let locateControl = L.control.locate(geolocationOptions).addTo(map);
 
 // Draw markers onto canvas and style with red based on mass of meteorite -- needs size legend
 function calculateRadius(mass) {
