@@ -144,9 +144,6 @@ function massFilter(feature, targetValue) {
 }
 
 function countryFilter(feature, targetValue) {
-  console.log("Feature Country Name:", feature.properties.country_name);
-  console.log("Target Value:", targetValue);
-
   if (targetValue === "") {
     return true;
   } else if (feature.properties.country_name) {
