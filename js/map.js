@@ -2,6 +2,7 @@ const NAMEFIELD = "name";
 const YEARFIELD = "year";
 const COMPOSITIONFIELD = "composition";
 const MASSFIELD = "mass";
+const COUNTRYFIELD = "country_name";
 const DEFAULTFIELD = NAMEFIELD;
 const DEFAULTVALUE = "";
 const COUNTRYNAME = "country_name";
@@ -441,6 +442,9 @@ function updateSearch(e) {
     dataLayer.clearLayers();
     let layer = generateMap();
     map.fitBounds(layer.getBounds());
+
+    searchbox.clear();
+    searchbox.hide();
   }
 }
 
@@ -474,6 +478,8 @@ function resetSettings() {
 function updateSearchField(e) {
   currentFilter = getMatchingFilter(selector.value);
   resetSettings();
+  searchbox.clear();
+  searchbox.hide();
 }
 
 function resetSearch(e) {
@@ -494,7 +500,11 @@ let data1 = searchInputElement
   });
 let data2 = document
   .getElementById("reset-btn")
-  .addEventListener("click", resetSearch);
+  .addEventListener("click", (e) => {
+    resetSearch(e);
+    searchbox.clear();
+    searchbox.hide();
+  });
 let data3 = document
   .getElementById("nav__fieldSelect")
   .addEventListener("change", updateSearchField);
@@ -697,12 +707,18 @@ searchbox.onButton("click", search);
 searchbox.onAutocomplete("click", search);
 
 function search() {
-  defaultState = false;
+  defaultState = true;
+  resetSearch();
+  
   currentFilter = countryFilter;
   searchInput = searchbox.getValue();
+  selector.value = COUNTRYFIELD;
+  searchInputElement.value = searchInput;
   dataLayer.clearLayers();
   let layer = generateMap();
   map.fitBounds(layer.getBounds());
+
+  defaultState = false;
 
   setTimeout(function () {
     searchbox.hide();
