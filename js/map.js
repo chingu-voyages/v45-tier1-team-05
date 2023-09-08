@@ -307,10 +307,16 @@ generateMap();
 let data0 = document
   .getElementById("search-btn")
   .addEventListener("click", updateSearch);
-let data1 = document
+let data1 = searchInputElement
+  .addEventListener("keyup", (e) => {
+    if (e.key === 'Enter') {
+      updateSearch(e);
+    }
+  });
+let data2 = document
   .getElementById("reset-btn")
   .addEventListener("click", resetSearch);
-let data2 = document
+let data3 = document
   .getElementById("nav__fieldSelect")
   .addEventListener("change", updateSearchField);
 
