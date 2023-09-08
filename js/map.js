@@ -42,11 +42,11 @@ const map = new L.map("map", {
 
 // Add OSM basemap tiles
 let layer = new L.TileLayer(
-  "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
   {
     maxZoom: 20,
     attribution:
-      '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+      '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
   }
 );
 layer.addTo(map);
