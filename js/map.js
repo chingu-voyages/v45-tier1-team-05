@@ -512,10 +512,12 @@ let data3 = document
 //In map search bar with search glass
 var searchbox = L.control
   .searchbox({
+    id: "country-searchbox",
     position: "topright",
     expand: "left",
   })
   .addTo(map);
+document.getElementById("country-searchbox").setAttribute("title", "Filter dataset by country name");
 
 function generateSummaryTable(tableId, tableStructure, inputData) {
   let table = document.getElementById(tableId);
