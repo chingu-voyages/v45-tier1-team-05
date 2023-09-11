@@ -10,12 +10,24 @@ const SUMMARY_TABLE_ID = "summary-table";
 const DETAILED_TABLE_ID = "detailed-table";
 
 const summaryTableStructure = {
-  headers: ["Total number of strikes", "Average mass"],
+  headers: ["Total strikes", "Average mass"],
+  headerDefinitions: [
+    "Total number of meteorite landings that are within the search criteria",
+    "The calculated average mass of the meteorite landings within the search criteria",
+  ],
 };
 
 const detailedTableStructure = {
   headers: ["Name", "Year", "Mass (g)", "Composition", "Found", "Country"],
   headerFields: ["name", "year", "mass (g)", "class", "fall", "country_name"],
+  headerDefinitions: [
+    "The name given to the identified meteorite",
+    "The year that the meteorite was observed",
+    "The recorded mass in grams of the meteorite",
+    "The known classification / composition of the meteorite",
+    "Whether the physical meteorite has been found or observed to have fallen somewhere",
+    "The country where the meteorite was found or observed to have fallen",
+  ],
 };
 
 const countries = [
@@ -532,7 +544,10 @@ function generateSummaryTable(tableId, tableStructure, inputData) {
   for (let i = 0; i < tableStructure.headers.length; i++) {
     let th = document.createElement("th");
     headerRow.appendChild(th);
-    th.innerHTML = tableStructure.headers[i];
+    th.innerHTML =
+      tableStructure.headers[i] +
+      `<button class="info-button" id="info${i}" title="${tableStructure.headerDefinitions[i]}">i</button>`;
+
   }
   table.appendChild(headerRow);
 
@@ -590,8 +605,6 @@ function generateSummaryTable(tableId, tableStructure, inputData) {
         color: "grey",
       },
     },
-    // paper_bgcolor: "#eaeaea",
-    // plot_bgcolor: "#eaeaea",
   };
   let config = { responsive: true };
   Plotly.newPlot("histogram-year", dataYear, layoutYear, config);
@@ -629,8 +642,6 @@ function generateSummaryTable(tableId, tableStructure, inputData) {
         color: "grey",
       },
     },
-    // paper_bgcolor: "#eaeaea",
-    // plot_bgcolor: "#eaeaea",
   };
 
   Plotly.newPlot("histogram-composition", dataClass, layoutClass, config);
@@ -649,7 +660,9 @@ function generateTable(tableId, tableStructure, inputData) {
   for (let i = 0; i < tableStructure.headers.length; i++) {
     let th = document.createElement("th");
     headerRow.appendChild(th);
-    th.innerHTML = tableStructure.headers[i];
+    th.innerHTML = 
+      tableStructure.headers[i] +
+      `<button class="info-button" id="info${i}" title="${tableStructure.headerDefinitions[i]}">i</button>`;
   }
   table.appendChild(headerRow);
 

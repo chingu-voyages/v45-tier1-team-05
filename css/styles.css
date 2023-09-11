@@ -407,6 +407,27 @@ td {
 .active-info:after {
   content: "\2212"; /* Unicode character for "minus" sign (-) */
 }
+
+.th-button {
+  background-color: var(--marker-fill);
+  font: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+.info-button {
+  background-color: var(--marker-border);
+  color: var(--marker-fill);
+  font-family: "Monospace";
+  font-size: 10px;
+  font-weight: bold;
+  padding-left: 5px;
+  width: 15px;
+  border-radius: 15px;
+  border: none;
+  float: right;
+}
+
 /**********************************************************/
 /**************    Tablet View  ***************************/
 /**********************************************************/
