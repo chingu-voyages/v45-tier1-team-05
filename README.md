@@ -1,15 +1,65 @@
-# v45-tier1-team-05
-Add-project-description-here | Voyage-45 | https://chingu.io/ | Twitter: https://twitter.com/ChinguCollabs
+# Fireball by v45-tier1-team-05
 
-Fireball app is an app created to track meteorite strikes. Key goals for the app include: a search field for being able to filter meteorite strikes by name, strike by year, size and mass, what country the strike occurred in, composition of the meteor, and total number of strikes, a display for meteor data showing one dataset per line, and a summary metrics display showing total number of strikes, average mass, a histogram of strikes by year, and a histogram of strikes by composition.
+## Table of contents
 
-Features: This app includes:
-* Search bar - you can filter meteorite tracking results by name, size/mass range, year, country, composition, and total number of strikes. You can also clear results to reset your search filters.
-* Geolocation button - locate meteorite strikes at or near your location
-* Data display - each meteorite strike point on the map will show a data set; if no strike points are shown, a summary metric will be shown for all all meteorite strike points
-* Summary metrics display - metrics for data selected: total number of strikes, average mass, number of strikes per year histogram, and number of strikes by composition histogram
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [Our process](#our-process)
+  - [Built with](#built-with)
+  - [Continued development](#continued-development)
+- [Our team](#our-team)
+- [Acknowledgments](#acknowledgments)
 
-How to run Fireball app: app is written in HTML, CSS, and JavaScript, so all that should be required to run it is to clone it from Github to a local folder. Github link: https://github.com/chingu-voyages/v45-tier1-team-05/tree/main
+## Overview
 
-ToDo list:
-* Code users please report any bugs or submit ideas for features
+Fireball is our app created to track meteorite strikes around the world in a fun and easy way.
+
+### The challenge
+
+Users should be able to:
+- Use **search field** to filter meteorite strikes by name, year, mass, composition, and country
+- Use a **search bar** located at the top-right of the map to filter by country (with autocomplete)
+- **Geolocate** the user to view meteorite strikes near you
+- View **summary statistics** including total number of strikes, average mass, and histograms by year and composition
+- View **detailed data** of each strike (ie. name, year, composition, country)
+
+For a full set of project requirements, see [here](https://github.com/chingu-voyages/voyage-project-tier1-fireball/tree/main).
+
+### Screenshot
+
+![](img/screenshot.jpeg)
+
+
+### Links
+
+- Team [repo](https://github.com/chingu-voyages/v45-tier1-team-05/tree/main)
+- Deployed on [Github Pages](https://chingu-voyages.github.io/v45-tier1-team-05/)
+
+## Our process
+
+### Built with
+
+- HTML
+- CSS
+- Flexbox
+- Javascript
+- Leafletjs
+- Open Street Maps
+
+### Continued development
+
+- Users can report bugs or submit ideas for features within this github repo
+
+## Our team
+
+- [Stacy](https://github.com/Stacy-Riley)
+- [Jules](https://github.com/jclegg31)
+- [Frosty](https://github.com/frosty8104)
+- [Andie](https://github.com/namjooningOnline)
+- [Louis](https://github.com/chef-louis)
+
+## Acknowledgments
+
+Voyage-45 | https://chingu.io/ | Twitter: https://twitter.com/ChinguCollabs
