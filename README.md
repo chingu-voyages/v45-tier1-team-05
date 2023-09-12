@@ -47,6 +47,7 @@ For a full set of project requirements, see [here](https://github.com/chingu-voy
 - Javascript
 - Leafletjs
 - Open Street Maps
+- Plotly
 
 ### Continued development
 
