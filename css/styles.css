@@ -72,16 +72,20 @@ header {
   width: 175px;
 }
 
+.header__wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .header__item {
   font-family: "Open Sans";
   color: var(--marker-border);
-  height: 40px;
-  margin: 2.25em 0 -2.25em 0;
+  margin: 75px 0 -75px 0;
 }
 
 .header__item__logo {
-  width: 200%;
-  height: 200%;
+  width: 250px;
+  height: 250px;
 }
 
 .nav {
