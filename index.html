@@ -1,90 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="icon" type="image/png" sizes="32x32" href="#">
-        <link rel="icon" type="image/png" sizes="32x32" href="#">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
-        <link href="css/Leaflet.AnimatedSearchBox.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css">
+    <!-- HIDING PREVIOUS PNG LOGO  -->
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="#">
+        <link rel="icon" type="image/png" sizes="32x32" href="#"> -->
 
-        <title>V45 Team 05 - Fireball Project</title>
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-        <script src="js/Leaflet.AnimatedSearchBox.js"></script>
-        <script src="assets/data.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
-        <script src="https://cdn.plot.ly/plotly-2.25.2.min.js"></script>
-    </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="css/Leaflet.AnimatedSearchBox.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css">
 
-    <body>
-        <header>
-            <div class="header__wrapper">
-                <a class="header" href="./">
-                    <h1 class="header__item">Fireball</h1>
-                    <img class="header__item" src="./img/fireball-logo.png" alt="Fireball logo" style="width:150px;height:auto;">
-                </a>
-            </div>
-            <div class="nav">
-                <nav class="nav__wrapper" id="main-nav-wrapper">
-                    <div class="nav__search">
-                        <div class="nav__btns">
-                            <label for="nav__fieldSelect"></label>
-                            <select id="nav__fieldSelect" class="search_button_style" name="fieldSelect">
-                                <option value="" disabled selected>Select an item</option>
-                                <option value="name">Name</option>
-                                <option value="year">Year</option>
-                                <option value="composition">Composition</option>
-                                <option value="mass">Mass</option>
-                                <option value="country_name">Country</option>
-                            </select>
+    <title>V45 Team 05 - Fireball Project</title>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/Leaflet.AnimatedSearchBox.js"></script>
+    <script src="assets/data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.25.2.min.js"></script>
+</head>
 
-                            <label for="search-value"></label>
-                            <input class="search_button_style" id="search-value" placeholder="Search Input">
-                            <br>
-                            <button class="nav__searchBtn inverse_search_button_style" id="search-btn">Search</button>
-                            <button class="nav__resetBtn inverse_search_button_style" id="reset-btn">Clear</button>
-                        </div>
+<body>
+    <header>
+        <div class="header__wrapper">
+            <a class="header" href="./">
+                <h1 class="header__item">Fireball</h1>
+                <!-- <img class="header__item" src="./img/fireball-logo.png" alt="Fireball logo" style="width:150px;height:auto;"> -->
+                <img class="header__item__logo" src="img/fireball.svg" alt="Fireball logo">
+            </a>
+        </div>
+        <div class="nav">
+            <nav class="nav__wrapper" id="main-nav-wrapper">
+                <div class="nav__search">
+                    <div class="nav__btns">
+                        <label for="nav__fieldSelect"></label>
+                        <select id="nav__fieldSelect" class="search_button_style" name="fieldSelect">
+                            <option value="" disabled selected>Select an item</option>
+                            <option value="name">Name</option>
+                            <option value="year">Year</option>
+                            <option value="composition">Composition</option>
+                            <option value="mass">Mass</option>
+                            <option value="country_name">Country</option>
+                        </select>
+
+                        <label for="search-value"></label>
+                        <input class="search_button_style" id="search-value" placeholder="Search Input">
+                        <br>
+                        <button class="nav__searchBtn inverse_search_button_style" id="search-btn">Search</button>
+                        <button class="nav__resetBtn inverse_search_button_style" id="reset-btn">Clear</button>
                     </div>
-                    
-                    <div id="warning-display"></div>
-                </nav>
-            </div>
-        </header>
-        <main>
-            <div id="map" style="width: 100%; height: 60vh"></div>
-            <button type="button" class="main__collapsible">Summary Metrics</button>
-            <div class="main__table-container" id="summary-table-container">
-                <table id="summary-table"></table>
-                <div id="figures-container">
-                    <div id="histogram-year"></div>
-                    <div id="histogram-composition"></div>
                 </div>
+
+                <div id="warning-display"></div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div id="map" style="width: 100%; height: 60vh"></div>
+        <button type="button" class="main__collapsible">Summary Metrics</button>
+        <div class="main__table-container" id="summary-table-container">
+            <table id="summary-table"></table>
+            <div id="figures-container">
+                <div id="histogram-year"></div>
+                <div id="histogram-composition"></div>
             </div>
-            <button type="button" class="main__collapsible">Detailed Data Display</button>
-            <div class="main__table-container" id="detailed-table-container">
-                <table id="detailed-table"></table>
-            </div>
-        </main>
-        <footer class="footer">
-            <div class="footer__item">
-                <a id="git" href="https://github.com/chingu-voyages/v45-tier1-team-05">
-                <i class="fa fa-github" style="font-size: 18px"></i> Built by Team 05<span class="footer__item__span">|</span></a>  
-            </div>
-        
-            <div class="footer__item">
-                <p>V45 September 2023<span class="footer__item__span">|</span></p>
-            </div>
-            
-            <div class="footer__item">
-                <a id="chingu" href="https://www.chingu.io/">
-                    <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--k3hUvJ_o--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/462/1eba8151-95e3-4df8-b2a0-6d6b5a4c9bdd.png" alt="Chingu logo" style="width:20px;height:auto;"> Chingu</a>
-            </div>
-        </footer>
-        <script src="js/map.js"></script>
-    </body>
+        </div>
+        <button type="button" class="main__collapsible">Detailed Data Display</button>
+        <div class="main__table-container" id="detailed-table-container">
+            <table id="detailed-table"></table>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__item">
+            <a id="git" href="https://github.com/chingu-voyages/v45-tier1-team-05">
+                <i class="fa fa-github" style="font-size: 18px"></i> Built by Team 05<span
+                    class="footer__item__span">|</span></a>
+        </div>
+
+        <div class="footer__item">
+            <p>V45 September 2023<span class="footer__item__span">|</span></p>
+        </div>
+
+        <div class="footer__item">
+            <a id="chingu" href="https://www.chingu.io/">
+                <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--k3hUvJ_o--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/462/1eba8151-95e3-4df8-b2a0-6d6b5a4c9bdd.png"
+                    alt="Chingu logo" style="width:20px;height:auto;"> Chingu</a>
+        </div>
+    </footer>
+    <script src="js/map.js"></script>
+</body>
+
 </html>
