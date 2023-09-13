@@ -19,6 +19,7 @@ Fireball is our app created to track meteorite strikes around the world in a fun
 ### The challenge
 
 Users should be able to:
+
 - Use **search field** to filter meteorite strikes by name, year, mass, composition, and country
 - Use a **search bar** located at the top-right of the map to filter by country (with autocomplete)
 - **Geolocate** the user to view meteorite strikes near you
@@ -30,7 +31,6 @@ For a full set of project requirements, see [here](https://github.com/chingu-voy
 ### Screenshot
 
 ![](img/screenshot.jpeg)
-
 
 ### Links
 
@@ -62,5 +62,10 @@ For a full set of project requirements, see [here](https://github.com/chingu-voy
 - [Louis](https://github.com/chef-louis)
 
 ## Acknowledgments
+
+Thanks to NASA and it's partners for open sourcing this data. You can find more
+at [NASA Open Data Portal](https://data.nasa.gov/).
+
+Thanks to Chingu for organizing and bringing the team together.
 
 Voyage-45 | https://chingu.io/ | Twitter: https://twitter.com/ChinguCollabs
