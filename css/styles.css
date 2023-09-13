@@ -76,7 +76,19 @@ header {
   font-family: "Open Sans";
   color: var(--marker-border);
   height: 40px;
-  margin: 0;
+  margin: 40% 0 -40% 0;
+}
+
+/* .logo__box {
+  display: inline;
+  height: 10%;
+  border: 1px solid red;
+  object-fit: cover;
+} */
+
+.header__item__logo {
+  width: 200%;
+  height: 200%;
 }
 
 .nav {
