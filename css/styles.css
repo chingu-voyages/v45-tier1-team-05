@@ -58,9 +58,10 @@ li {
 /**********************************************************/
 header {
   display: flex;
+  background-color: var(--bg-color);
 }
 
-.header {
+.header { 
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -295,6 +296,7 @@ header {
 .footer {
   font-family: "Open Sans";
   font-size: 14px;
+  background-color: var(--bg-color);
   color: var(--primary-color);
   display: flex;
   justify-content: space-between;
