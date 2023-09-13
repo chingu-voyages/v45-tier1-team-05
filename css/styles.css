@@ -76,15 +76,8 @@ header {
   font-family: "Open Sans";
   color: var(--marker-border);
   height: 40px;
-  margin: 40% 0 -40% 0;
+  margin: 2.25em 0 -2.25em 0;
 }
-
-/* .logo__box {
-  display: inline;
-  height: 10%;
-  border: 1px solid red;
-  object-fit: cover;
-} */
 
 .header__item__logo {
   width: 200%;
